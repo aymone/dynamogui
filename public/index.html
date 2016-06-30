@@ -4,13 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <title>My App</title>
+    <link rel="stylesheet" href="https://material.angularjs.org/latest/angular-material.min.css">
     <script src="/js/main.js"></script>
 </head>
 
 <body>
-    <div ng-controller="MainController">
+    <div ng-controller="MainController" ng-cloak>
         <h1>{{message}}</h1>
-    </div>
+        <md-content class="md-padding">
+            <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+                <md-nav-item md-nav-click="goto('page1')" name="page1">Page One</md-nav-item>
+                <md-nav-item md-nav-click="goto('page2')" name="page2">Page Two</md-nav-item>
+                <md-nav-item md-nav-click="goto('page3')" name="page3">Page Three</md-nav-item>
+            </md-nav-bar>
+            <span>{{currentNavItem}}</span>
+        </md-content>
 </body>
 
 </html>

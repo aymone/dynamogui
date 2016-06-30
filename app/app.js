@@ -1,8 +1,9 @@
 require('angular');
+require('angular-material');
 
-const ngMaterial = require('angular-material');
 const app = angular.module('app', ['ngMaterial']);
 
-app.controller('MainController', ($scope) => {
-    $scope.message = 'Workings!';
+app.controller('MainController', function($scope) {
+    $scope.message = 'Workingxs!';
+    $scope.currentNavItem = 'page1';
 });
