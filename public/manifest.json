@@ -1,0 +1,19 @@
+{
+    "manifest_version": 2,
+    "name": "DynamoDB GUI",
+    "description": "This extension allow access to dynamodb",
+    "version": "1.0",
+    "browser_action": {
+        "default_icon": "images/icon48.png",
+        "default_popup": "index.html"
+    },
+    "icons": {
+        "16": "images/icon16.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+    },
+    "permissions": [
+        "activeTab",
+        "https://ajax.googleapis.com/"
+    ]
+}
