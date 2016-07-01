@@ -1,45 +1,61 @@
-# Dynamo GUI
+#Dynamo GUI
 
 *Under construction :D*
 
 DynamoDB GUI as chrome extension.
 
-### checkpoints:
-    Implements services with aws sdk for javascritp
-    Export as chrome extension
-    Export as other browsers extensions
-    Dockerize dev with dynamo
-    Check for loading minified js
-    Save conf on webstorage
+##Checkpoints:
+    Implements services with aws sdk for javascript
+    Implement tests
+    Dockerize dev with dynamo container
+    Show tables
+    Alter tables
+    Lista dynamo data
+    Query dynamo data
+    Edit dynamo data
+    Save conf on browser localstorage
     Export conf as json
-    Import as Json
-    Show dynamo tables
-    Manipulate dynamo data
+    Import conf as Json
+    Sync conf on cloud storages
     Create cool png icons (16/48/128)
+    Export as other browsers extensions
+    Publish on chrome store
 
-### tools
+##Requirements
 
-Install packages
+Node ~4.4
+Npm ~2.15
+
+
+##Todo
+
+Install deps
 ```console
 $ npm install
 ```
 
-watch changes and auto build
+Build app
+```console
+$ gulp build
+```
+
+###Development mode
+Import "public" folder as google extension throught developer tools, the app will be available on your chrome browser.
+
+
+##Tools
+
+Connect server on localhost:4000, watch for changes to auto build main.js
 ```console
 $ gulp
 ```
 
-build App
+Build main.js
 ```console
 $ gulp build
 ```
 
 Connect server on localhost:4000
 ```console
-$ gulp build
+$ gulp connect
 ```
-
-Requirements:
-
-Node 4.x (stable version)
-Npm 2.x
