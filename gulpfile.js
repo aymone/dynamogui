@@ -28,7 +28,7 @@ gulp.task('build', () => {
 });
 
 gulp.task('watch', () => {
-    gulp.watch('app/**/*.js', ['build']);
+    gulp.watch('app/**/*.*', ['build']);
 });
 
 gulp.task('default', ['connect', 'watch']);
