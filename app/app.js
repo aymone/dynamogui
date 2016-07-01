@@ -5,3 +5,4 @@ angular
     .module('DynamoGUI', ['ngMaterial']);
 
 require('./controller');
+require('./service');
