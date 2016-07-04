@@ -1,12 +1,21 @@
 'use strict';
 
-function MainController($scope, Table) {
+function MainController($scope, TableService) {
     var vm = this;
     vm.message = 'Workings!';
     vm.currentNavItem = 'page1';
-    vm.test = Table.get();
+    vm.test = "";
+
+    function init() {
+        TableService.list()
+            .then(function(data) {
+                vm.test = data;
+            });
+    }
+
+    init();
 };
 
-MainController.$inject = ['$scope', 'Table'];
+MainController.$inject = ['$scope', 'TableService'];
 
 module.exports = MainController;
