@@ -24,8 +24,10 @@ DynamoDB GUI as chrome extension.
 ##Requirements
 
 Node ~4.4
+
 Npm ~2.15
 
+Gulp
 
 ##Todo
 

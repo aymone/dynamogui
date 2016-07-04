@@ -1,10 +1,11 @@
 'use strict';
 
 function MainController($scope, Table) {
-    $scope.message = 'Workings!';
-    $scope.currentNavItem = 'page1';
-    $scope.test = Table.get();
-}
+    var vm = this;
+    vm.message = 'Workings!';
+    vm.currentNavItem = 'page1';
+    vm.test = Table.get();
+};
 
 MainController.$inject = ['$scope', 'Table'];
 

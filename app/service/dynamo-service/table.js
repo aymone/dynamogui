@@ -2,10 +2,10 @@
 
 function Table() {
     return {
-        get
+        get: get
     };
 
-    function get(){
+    function get() {
         return "The Table get value";
     }
 };
