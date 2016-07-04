@@ -2,14 +2,26 @@
 
 function MainController($scope, TableService) {
     var vm = this;
-    vm.message = 'Workings!';
-    vm.currentNavItem = 'page1';
-    vm.test = "";
+
+    vm.currentTableName = 'Select One table';
+    vm.tableList = [];
+    vm.tableDescribe = "Select one table";
+
+    vm.setTable = setTable;
 
     function init() {
         TableService.list()
             .then(function(data) {
-                vm.test = data;
+                vm.tableList = data;
+                setTable(data[0]);
+            });
+    }
+
+    function setTable(tableName) {
+        TableService.describe(tableName)
+            .then(function(data) {
+                vm.currentTableName = tableName;
+                vm.tableDescribe = data;
             });
     }
 

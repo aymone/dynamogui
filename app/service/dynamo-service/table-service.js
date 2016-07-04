@@ -42,7 +42,7 @@ function TableService(DynamoDB, $q) {
             deferred.reject('Table name to be described is required');
         }
 
-        DynamoDB.describeTable(function(err, data) {
+        DynamoDB.describeTable(params, function(err, data) {
             if (err) {
                 deferred.reject(err);
             }

@@ -10,15 +10,16 @@
 
 <body>
     <div ng-controller="MainController as main" ng-cloak>
-        <h1>{{main.message}}</h1>
-        <h2>{{main.test}}</h2>
+        <h2>DynamoDb Tables</h2>
         <md-content class="md-padding">
-            <md-nav-bar md-selected-nav-item="main.currentNavItem" nav-bar-aria-label="navigation links">
-                <md-nav-item md-nav-click="goto('page1')" name="page1">Page One</md-nav-item>
-                <md-nav-item md-nav-click="goto('page2')" name="page2">Page Two</md-nav-item>
-                <md-nav-item md-nav-click="goto('page3')" name="page3">Page Three</md-nav-item>
+            <md-nav-bar md-selected-nav-item="main.currentTableName" nav-bar-aria-label="navigation links">
+                <md-nav-item ng-repeat="(key, value) in main.tableList track by $index" ng-click="main.setTable(value)" md-nav-click="goto(value)"
+                    name="{{value}}">
+                    {{value}}
+                </md-nav-item>
             </md-nav-bar>
-            <span>{{main.currentNavItem}}</span>
+            <span>{{main.currentTableName}}</span>
+            <pre>{{main.tableDescribe | json}}</pre>
         </md-content>
 </body>
 
