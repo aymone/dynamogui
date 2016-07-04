@@ -1,3 +1,5 @@
+require('./aws-service');
+
 angular
-    .module('DynamoService', [])
+    .module('DynamoService', ['AwsService'])
     .factory('Table', require('./table'));
