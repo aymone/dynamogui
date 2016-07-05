@@ -5,6 +5,7 @@
 DynamoDB GUI as chrome extension.
 
 ##Checkpoints:
+
     Implements services with aws sdk for javascript :white_check_mark:
     Implement tests
     Dockerize dev with dynamo container :white_check_mark:
