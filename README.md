@@ -5,10 +5,10 @@
 DynamoDB GUI as chrome extension.
 
 ##Checkpoints:
-    Implements services with aws sdk for javascript
+    Implements services with aws sdk for javascript :white_check_mark:
     Implement tests
-    Dockerize dev with dynamo container
-    Show tables
+    Dockerize dev with dynamo container :white_check_mark:
+    Show tables :white_check_mark:
     Alter tables
     Lista dynamo data
     Query dynamo data
@@ -29,14 +29,21 @@ Npm ~2.15
 
 Gulp
 
-##Todo
+Docker
+
+##Development todo
 
 Install deps
 ```console
 $ npm install
 ```
 
-Build app
+Up local dynamoDB with [docker container](https://github.com/daime/docker-dynamodb)
+```console
+$ gulp dynamoUp
+```
+
+Build app (Browserify Pack)
 ```console
 $ gulp build
 ```
