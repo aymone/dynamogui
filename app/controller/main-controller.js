@@ -5,20 +5,26 @@ function MainController($scope, TableService) {
 
     vm.currentTableName = 'Select One table';
     vm.tableList = [];
-    vm.tableDescribe = "Select one table";
+    vm.tableDescribe = 'No table selected';
 
     vm.setTable = setTable;
 
     function init() {
-        TableService.list()
+        TableService
+            .list()
             .then(function(data) {
                 vm.tableList = data;
-                setTable(data[0]);
+                if (!data[0]) {
+                    vm.currentTableName = "No tables";
+                } else {
+                    setTable(data[0]);
+                }
             });
     }
 
     function setTable(tableName) {
-        TableService.describe(tableName)
+        TableService
+            .describe(tableName)
             .then(function(data) {
                 vm.currentTableName = tableName;
                 vm.tableDescribe = data;

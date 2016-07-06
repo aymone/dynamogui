@@ -23,8 +23,8 @@ gulp.task('build', function() {
         .bundle()
         .pipe(source('main.js'))
         // saves it the public/js/ directory
-        // .pipe(buffer()) // <----- convert from streaming to buffered vinyl file object
-        // .pipe(uglify()) // now gulp-uglify works
+        .pipe(buffer()) // <----- convert from streaming to buffered vinyl file object
+        .pipe(uglify()) // now gulp-uglify works
         .pipe(gulp.dest('./public/js/'));
 });
 
