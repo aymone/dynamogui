@@ -33,8 +33,20 @@ gulp.task('watch', function() {
 });
 
 //Dockerize dynamodb on 4770
-gulp.task('dynamoUp', shell.task([
-    'docker run -d -p 4770:4761 daime/docker-dynamodb:0.1.0'
+gulp.task('db-create', shell.task([
+    'docker run -d --name dynamo-gui -p 4770:4761 daime/docker-dynamodb:0.1.0'
+]));
+
+gulp.task('db-up', shell.task([
+    'docker start dynamo-gui'
+]));
+
+gulp.task('db-down', shell.task([
+    'docker stop dynamo-gui'
+]));
+
+gulp.task('db-delete', shell.task([
+    'docker rm dynamo-gui'
 ]));
 
 gulp.task('default', ['connect', 'watch']);
