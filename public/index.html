@@ -10,17 +10,28 @@
 
 <body>
     <div ng-controller="MainController as main" ng-cloak>
-        <h2>DynamoDb Tables</h2>
-        <md-content class="md-padding">
-            <md-nav-bar md-selected-nav-item="main.currentTableName" nav-bar-aria-label="navigation links">
-                <md-nav-item ng-repeat="(key, value) in main.tableList track by $index" ng-click="main.setTable(value)" md-nav-click="goto(value)"
-                    name="{{value}}">
-                    {{value}}
-                </md-nav-item>
-            </md-nav-bar>
-            <span>{{main.currentTableName}}</span>
-            <pre>{{main.tableDescribe | json}}</pre>
-        </md-content>
+
+        <div layout="row">
+            <div flex="20">
+                <md-content class="md-padding">
+                    <h2>DynamoGUI</h2>
+                    <md-list>
+                        <md-list-item ng-click="setTable()" ng-repeat="(key, value) in main.tableList track by $index">
+                            <p> {{ value }} </p>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </div>
+
+            <div flex="80">
+                <md-content class="md-padding">
+                    <h3>{{main.currentTableName}}</h3>
+                    <pre>{{main.tableDescribe | json}}</pre>
+                </md-content>
+            </div>
+        </div>
+
+    </div>
 </body>
 
 </html>
