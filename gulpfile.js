@@ -17,22 +17,18 @@ gulp.task('connect', function() {
 });
 
 gulp.task('build', function() {
-    // Grabs the app.js file
     return browserify('./app/app.js')
-        // bundles it and creates a file called main.js
-        .bundle()
+        .bundle()        // bundles it and creates a file called main.js
         .pipe(source('main.js'))
-        // saves it the public/js/ directory
-        .pipe(buffer()) // <----- convert from streaming to buffered vinyl file object
-        .pipe(uglify()) // now gulp-uglify works
-        .pipe(gulp.dest('./public/js/'));
+        .pipe(buffer())  // Convert from streaming to buffered vinyl file object
+        .pipe(uglify())  // Uglify bundle
+        .pipe(gulp.dest('./public/js/')); // saves it the public/js/ directory
 });
 
 gulp.task('watch', function() {
     gulp.watch('app/**/*.*', ['build']);
 });
 
-//Dockerize dynamodb on 4770
 gulp.task('db-create', shell.task([
     'docker run -d --name dynamo-gui -p 4770:4761 daime/docker-dynamodb:0.1.0'
 ]));
