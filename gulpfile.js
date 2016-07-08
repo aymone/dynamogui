@@ -9,6 +9,8 @@ var buffer = require('vinyl-buffer');
 var uglify = require('gulp-uglify');
 var less = require('gulp-less');
 var path = require('path');
+var karma = require('karma');
+var karmaServer = require('karma').server;
 
 // Connect task
 gulp.task('connect', function() {
@@ -33,6 +35,15 @@ gulp.task('less', function() {
             paths: [path.join(__dirname, 'less', 'includes')]
         }))
         .pipe(gulp.dest('./public/css'));
+});
+
+gulp.task('test', function(done) {
+    karmaServer.start({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+    }, function() {
+        done();
+    });
 });
 
 gulp.task('watch', function() {
