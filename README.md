@@ -30,8 +30,6 @@ DynamoDB GUI as chrome extension.
 
 [Docker](www.docker.com)
 
-[Less](http://lesscss.org/)
-
 
 ## Development todo
 
@@ -71,6 +69,11 @@ Connect server on localhost:4000
 $ gulp connect
 ```
 
+Update less
+```console
+$ gulp less
+```
+
 Stop docker container
 ```console
 $ gulp db-down
@@ -90,3 +93,5 @@ $ gulp db-delete
 [Angular material](https://material.angularjs.org/latest/)
 
 [AWS SDK](https://aws.amazon.com/pt/sdk-for-node-js/)
+
+[Less](http://lesscss.org/)
