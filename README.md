@@ -1,10 +1,10 @@
-#Dynamo GUI
+# Dynamo GUI
 
 *Under construction :D*
 
 DynamoDB GUI as chrome extension.
 
-##Checkpoints:
+## Checkpoints:
 
     Implements services with aws sdk for javascript
     Implement tests
@@ -22,24 +22,25 @@ DynamoDB GUI as chrome extension.
     Export as other browsers extensions
     Publish on chrome store
 
-##Requirements
+## Requirements
 
-Node ~4.4
+[Node](https://nodejs.org/en/) ~4.4 with npm ~2.15
 
-Npm ~2.15
+[Gulp](http://gulpjs.com/)
 
-Gulp
+[Docker](www.docker.com)
 
-Docker
+[Less](http://lesscss.org/)
 
-##Development todo
+
+## Development todo
 
 Install deps
 ```console
 $ npm install
 ```
 
-Create local dynamoDB with [docker container](https://github.com/daime/docker-dynamodb)
+Create local dynamoDB with [this docker container.](https://github.com/daime/docker-dynamodb)
 ```console
 $ gulp db-create
 ```
@@ -59,11 +60,11 @@ Run app on localhost:4000 and watch for changes and rebuild
 $ gulp
 ```
 
-###Development mode
+### Development mode
 Import "public" folder as google extension throught developer tools, the app will be available on your chrome browser.
 
 
-##Tools
+## Tools
 
 Connect server on localhost:4000
 ```console
@@ -79,3 +80,13 @@ Remove docker container
 ```console
 $ gulp db-delete
 ```
+
+### Tools and libraries used
+
+[Browserify](http://browserify.org/)
+
+[Angular](https://angularjs.org/) ~1.5x
+
+[Angular material](https://material.angularjs.org/latest/)
+
+[AWS SDK](https://aws.amazon.com/pt/sdk-for-node-js/)
