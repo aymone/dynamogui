@@ -2,7 +2,6 @@ var gulp = require('gulp');
 var shell = require('gulp-shell');
 var sass = require('gulp-ruby-sass');
 var connect = require('gulp-connect');
-// requires browserify and vinyl-source-stream
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
@@ -12,8 +11,8 @@ var path = require('path');
 var mocha = require('gulp-mocha');
 var gutil = require('gulp-util');
 var jshint = require('gulp-jshint');
+var cache = require('gulp-cached');
 
-// Connect task
 gulp.task('connect', function() {
     connect.server({
         root: 'public',
@@ -47,11 +46,11 @@ gulp.task('test', function() {
         }));
 });
 
-// configure the jshint task
 gulp.task('jshint', function() {
-  return gulp.src('app/**/*.*')
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'));
+    return gulp.src('app/**/*.*')
+        .pipe(cache('linting'))
+        .pipe(jshint())
+        .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('mocha', shell.task([
