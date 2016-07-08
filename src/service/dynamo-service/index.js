@@ -1,4 +1,4 @@
-require('./aws-service');
+require('../aws-service');
 
 angular
     .module('DynamoService', ['AWSService'])
