@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>DynamoGUI</title>
-    <link rel="stylesheet" href="https://material.angularjs.org/latest/angular-material.min.css">
+    <link rel="stylesheet" href="https://material.angularjs.org/latest/angular-material.css">
     <script src="/js/main.js"></script>
 </head>
 
@@ -16,8 +16,8 @@
                 <md-content class="md-padding">
                     <h2>DynamoGUI</h2>
                     <md-list>
-                        <md-list-item ng-click="setTable()" ng-repeat="(key, value) in main.tableList track by $index">
-                            <p> {{ value }} </p>
+                        <md-list-item ng-click="main.setTable(value)" ng-repeat="(key, value) in main.tableList track by $index">
+                            <a href="javascript:void" class="md-button md-primary"> {{ value }} </a>
                         </md-list-item>
                     </md-list>
                 </md-content>
