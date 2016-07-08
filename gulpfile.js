@@ -9,6 +9,9 @@ var buffer = require('vinyl-buffer');
 var uglify = require('gulp-uglify');
 var less = require('gulp-less');
 var path = require('path');
+var mocha = require('gulp-mocha');
+var gutil = require('gulp-util');
+var jshint = require('gulp-jshint');
 
 // Connect task
 gulp.task('connect', function() {
@@ -35,8 +38,29 @@ gulp.task('less', function() {
         .pipe(gulp.dest('./public/css'));
 });
 
+gulp.task('test', function() {
+    gulp.src('app/**/*.spec.js')
+        .pipe(mocha({
+            reporter: 'nyan',
+            clearRequireCache: true,
+            ignoreLeaks: true
+        }));
+});
+
+// configure the jshint task
+gulp.task('jshint', function() {
+  return gulp.src('app/**/*.*')
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'));
+});
+
+gulp.task('mocha', shell.task([
+    'mocha spec'
+]));
+
 gulp.task('watch', function() {
     gulp.watch('app/**/*.*', ['build']);
+    gulp.watch('app/**/*.spec.js', ['mocha']);
 });
 
 gulp.task('db-create', shell.task([
@@ -54,5 +78,9 @@ gulp.task('db-down', shell.task([
 gulp.task('db-delete', shell.task([
     'docker rm dynamo-gui'
 ]));
+
+gulp.task('hi', function() {
+    gutil.log('Watching...');
+});
 
 gulp.task('default', ['connect', 'watch']);
