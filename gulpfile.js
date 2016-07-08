@@ -19,12 +19,19 @@ gulp.task('connect', function() {
     });
 });
 
-gulp.task('build', function() {
-    return browserify('./app/app.js')
+gulp.task('prod', function() {
+    return browserify('./src/app.js')
         .bundle()        // bundles it and creates a file called main.js
         .pipe(source('main.js'))
-        // .pipe(buffer())  // Convert from streaming to buffered vinyl file object
-        // .pipe(uglify())  // Uglify bundle
+        .pipe(buffer())  // Convert from streaming to buffered vinyl file object
+        .pipe(uglify())  // Uglify bundle
+        .pipe(gulp.dest('./public/js/')); // saves it the public/js/ directory
+});
+
+gulp.task('build', function() {
+    return browserify('./src/app.js')
+        .bundle()        // bundles it and creates a file called main.js
+        .pipe(source('main.js'))
         .pipe(gulp.dest('./public/js/')); // saves it the public/js/ directory
 });
 
@@ -37,7 +44,7 @@ gulp.task('less', function() {
 });
 
 gulp.task('test', function() {
-    gulp.src('app/**/*.spec.js')
+    gulp.src('src/**/*.spec.js')
         .pipe(mocha({
             reporter: 'nyan',
             clearRequireCache: true,
@@ -46,7 +53,7 @@ gulp.task('test', function() {
 });
 
 gulp.task('jshint', function() {
-    return gulp.src('app/**/*.*')
+    return gulp.src('src/**/*.*')
         .pipe(cache('linting'))
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'));
@@ -57,7 +64,7 @@ gulp.task('mocha', shell.task([
 ]));
 
 gulp.task('watch', function() {
-    gulp.watch('app/**/*.*', ['build']);
+    gulp.watch('src/**/*.*', ['build']);
     gulp.watch('less/**/*.less', ['less']);
 });
 
