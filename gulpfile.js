@@ -7,6 +7,8 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var uglify = require('gulp-uglify');
+var less = require('gulp-less');
+var path = require('path');
 
 // Connect task
 gulp.task('connect', function() {
@@ -20,9 +22,17 @@ gulp.task('build', function() {
     return browserify('./app/app.js')
         .bundle()        // bundles it and creates a file called main.js
         .pipe(source('main.js'))
-        .pipe(buffer())  // Convert from streaming to buffered vinyl file object
-        .pipe(uglify())  // Uglify bundle
+        // .pipe(buffer())  // Convert from streaming to buffered vinyl file object
+        // .pipe(uglify())  // Uglify bundle
         .pipe(gulp.dest('./public/js/')); // saves it the public/js/ directory
+});
+
+gulp.task('less', function() {
+    return gulp.src('./less/**/*.less')
+        .pipe(less({
+            paths: [path.join(__dirname, 'less', 'includes')]
+        }))
+        .pipe(gulp.dest('./public/css'));
 });
 
 gulp.task('watch', function() {

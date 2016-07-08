@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>DynamoGUI</title>
     <link rel="stylesheet" href="https://material.angularjs.org/latest/angular-material.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <script src="/js/main.js"></script>
 </head>
 
@@ -12,12 +13,16 @@
     <div ng-controller="MainController as main" ng-cloak>
 
         <div layout="row">
-            <div flex="20">
-                <md-content class="md-padding">
-                    <h2>DynamoGUI</h2>
+            <div class="site-sidenav" flex="20">
+                <md-content class="md-padding site-sidenav">
+                    <h2>
+                        DynamoGUI
+                    </h2>
                     <md-list>
                         <md-list-item ng-click="main.setTable(value)" ng-repeat="(key, value) in main.tableList track by $index">
-                            <a href="javascript:void" class="md-button md-primary"> {{ value }} </a>
+                            <a href="javascript:void" class="md-accent">
+                                <span>{{ value }}</span>
+                            </a>
                         </md-list-item>
                     </md-list>
                 </md-content>
