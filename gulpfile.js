@@ -1,11 +1,10 @@
 var gulp = require('gulp');
 var shell = require('gulp-shell');
-var sass = require('gulp-ruby-sass');
 var connect = require('gulp-connect');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var uglify = require('gulp-uglify');
+// var buffer = require('vinyl-buffer');
+// var uglify = require('gulp-uglify');
 var less = require('gulp-less');
 var path = require('path');
 var mocha = require('gulp-mocha');
@@ -59,7 +58,7 @@ gulp.task('mocha', shell.task([
 
 gulp.task('watch', function() {
     gulp.watch('app/**/*.*', ['build']);
-    gulp.watch('app/**/*.spec.js', ['mocha']);
+    gulp.watch('less/**/*.less', ['less']);
 });
 
 gulp.task('db-create', shell.task([
