@@ -1,12 +1,12 @@
 {
   "name": "dynamogui",
   "version": "1.0.0",
-  "description": "",
+  "description": "DynamoDB gui as chrome extension",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Marcelo Aymone",
   "license": "MIT",
   "devDependencies": {
     "browserify": "^13.0.1",
