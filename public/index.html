@@ -13,8 +13,15 @@
     <div ng-controller="MainController as main" layout="row" ng-cloak>
 
         <div class="site-sidenav" flex="20" layout="column">
-            <md-content class="md-padding site-sidenav">
-                <h2>DynamoGUI</h2>
+
+            <md-content class="site-sidenav md-padding">
+                <h1>DynamoGUI</h1>
+                <md-button class="md-primary" ng-click="main.moreInfo(1)">
+                    +
+                </md-button>
+                <md-button class="md-primary" ng-click="main.moreInfo(1)">
+                    List connections
+                </md-button>
                 <md-list>
                     <md-list-item ng-click="main.setTable(value)" ng-repeat="(key, value) in main.tableList track by $index">
                         <a href="javascript:void" class="md-accent">

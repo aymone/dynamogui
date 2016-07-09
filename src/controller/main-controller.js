@@ -1,6 +1,6 @@
 'use strict';
 
-function MainController($scope, TableService) {
+function MainController($scope, TableService, $mdDialog) {
     var vm = this;
 
     vm.currentTableName = 'Select One table';
@@ -8,6 +8,38 @@ function MainController($scope, TableService) {
     vm.tableDescribe = 'No table selected';
 
     vm.setTable = setTable;
+
+    vm.moreInfo = moreInfo;
+
+    function moreInfo(thing) {
+        $mdDialog.show({
+            controllerAs: 'dialogCtrl',
+            clickOutsideToClose: true,
+            bindToController: true,
+            controller: function($mdDialog) {
+                this.click = function click() {
+                    $mdDialog.show({
+                        controllerAs: 'dialogCtrl',
+                        controller: function($mdDialog) {
+                            this.click = function() {
+                                $mdDialog.hide();
+                            };
+                        },
+                        preserveScope: true,
+                        autoWrap: true,
+                        skipHide: true,
+                        template: '<md-dialog class="confirm"><md-conent><md-button ng-click="dialogCtrl.click()">I am in a 2nd dialog!</md-button></md-conent></md-dialog>'
+                    });
+                };
+            },
+            autoWrap: false,
+            template: '<md-dialog class="stickyDialog" data-type="{{::dialogCtrl.thing.title}}"><md-conent><md-button ng-click="dialogCtrl.click()">I am in a dialog!</md-button></md-conent></md-dialog>',
+            locals: {
+                thing: thing
+            }
+        });
+    }
+
 
     function init() {
         TableService
@@ -34,6 +66,6 @@ function MainController($scope, TableService) {
     init();
 };
 
-MainController.$inject = ['$scope', 'TableService'];
+MainController.$inject = ['$scope', 'TableService', '$mdDialog'];
 
 module.exports = MainController;
