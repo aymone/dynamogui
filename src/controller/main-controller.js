@@ -13,10 +13,10 @@ function MainController($scope, TableService) {
         TableService
             .list()
             .then(function(data) {
-                vm.tableList = data;
                 if (!data[0]) {
                     vm.currentTableName = "No tables";
                 } else {
+                    vm.tableList = data;
                     setTable(data[0]);
                 }
             });

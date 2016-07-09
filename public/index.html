@@ -4,36 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <title>DynamoGUI</title>
-    <link rel="stylesheet" href="https://material.angularjs.org/latest/angular-material.css">
+    <link rel="stylesheet" type="text/css" href="/css/angular-material.min.css">
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <script src="/js/main.js"></script>
 </head>
 
 <body>
-    <div ng-controller="MainController as main" ng-cloak>
+    <div ng-controller="MainController as main" layout="row" ng-cloak>
 
-        <div layout="row">
-            <div class="site-sidenav" flex="20">
-                <md-content class="md-padding site-sidenav">
-                    <h2>
-                        DynamoGUI
-                    </h2>
-                    <md-list>
-                        <md-list-item ng-click="main.setTable(value)" ng-repeat="(key, value) in main.tableList track by $index">
-                            <a href="javascript:void" class="md-accent">
-                                <span>{{ value }}</span>
-                            </a>
-                        </md-list-item>
-                    </md-list>
-                </md-content>
-            </div>
+        <div class="site-sidenav" flex="20" layout="column">
+            <md-content class="md-padding site-sidenav">
+                <h2>DynamoGUI</h2>
+                <md-list>
+                    <md-list-item ng-click="main.setTable(value)" ng-repeat="(key, value) in main.tableList track by $index">
+                        <a href="javascript:void" class="md-accent">
+                            <span>{{ value }}</span>
+                        </a>
+                    </md-list-item>
+                </md-list>
 
-            <div flex="80">
-                <md-content class="md-padding">
-                    <h3>{{main.currentTableName}}</h3>
-                    <pre>{{main.tableDescribe | json}}</pre>
-                </md-content>
-            </div>
+            </md-content>
+        </div>
+
+        <div flex="80" layout-sm="column">
+            <md-content class="md-padding">
+                <h3>{{main.currentTableName}}</h3>
+                <pre>{{main.tableDescribe | json}}</pre>
+            </md-content>
         </div>
 
     </div>
