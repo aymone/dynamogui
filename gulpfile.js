@@ -3,8 +3,8 @@ var shell = require('gulp-shell');
 var connect = require('gulp-connect');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
-// var buffer = require('vinyl-buffer');
-// var uglify = require('gulp-uglify');
+var buffer = require('vinyl-buffer');
+var uglify = require('gulp-uglify');
 var less = require('gulp-less');
 var path = require('path');
 var mocha = require('gulp-mocha');
@@ -21,30 +21,38 @@ gulp.task('connect', function() {
 
 gulp.task('prod', function() {
     return browserify('./src/app.js')
-        .bundle()        // bundles it and creates a file called main.js
+        .bundle()
         .pipe(source('main.js'))
-        .pipe(buffer())  // Convert from streaming to buffered vinyl file object
-        .pipe(uglify())  // Uglify bundle
-        .pipe(gulp.dest('./public/js/')); // saves it the public/js/ directory
+        .pipe(buffer())
+        .pipe(uglify())
+        .pipe(gulp.dest('./public/js/'));
 });
 
 gulp.task('build', function() {
     return browserify('./src/app.js')
-        .bundle()        // bundles it and creates a file called main.js
+        .bundle()
         .pipe(source('main.js'))
-        .pipe(gulp.dest('./public/js/')); // saves it the public/js/ directory
+        .pipe(gulp.dest('./public/js/'));
 });
 
 gulp.task('less', function() {
-    return gulp.src('./less/**/*.less')
+    return gulp
+        .src('./less/**/*.less')
         .pipe(less({
             paths: [path.join(__dirname, 'less', 'includes')]
         }))
         .pipe(gulp.dest('./public/css'));
 });
 
+gulp.task('css-deps', function() {
+    return gulp
+        .src('./node_modules/angular-material/angular-material.min.css')
+        .pipe(gulp.dest('./public/css'));
+});
+
 gulp.task('test', function() {
-    gulp.src('src/**/*.spec.js')
+    return gulp
+        .src('src/**/*.spec.js')
         .pipe(mocha({
             reporter: 'nyan',
             clearRequireCache: true,
@@ -53,7 +61,8 @@ gulp.task('test', function() {
 });
 
 gulp.task('jshint', function() {
-    return gulp.src('src/**/*.*')
+    return gulp
+        .src('src/**/*.*')
         .pipe(cache('linting'))
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'));

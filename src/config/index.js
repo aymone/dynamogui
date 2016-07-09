@@ -5,7 +5,5 @@ angular
 config.$inject = ['$mdThemingProvider'];
 function config($mdThemingProvider) {
     $mdThemingProvider
-        .theme('default')
-        .primaryPalette('red')
-        .accentPalette('orange');
+        .theme('default');
 }
