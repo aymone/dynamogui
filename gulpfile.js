@@ -1,16 +1,17 @@
 var gulp = require('gulp');
 var shell = require('gulp-shell');
-var sass = require('gulp-ruby-sass');
 var connect = require('gulp-connect');
-// requires browserify and vinyl-source-stream
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var uglify = require('gulp-uglify');
+// var buffer = require('vinyl-buffer');
+// var uglify = require('gulp-uglify');
 var less = require('gulp-less');
 var path = require('path');
+var mocha = require('gulp-mocha');
+var gutil = require('gulp-util');
+var jshint = require('gulp-jshint');
+var cache = require('gulp-cached');
 
-// Connect task
 gulp.task('connect', function() {
     connect.server({
         root: 'public',
@@ -18,12 +19,19 @@ gulp.task('connect', function() {
     });
 });
 
-gulp.task('build', function() {
-    return browserify('./app/app.js')
+gulp.task('prod', function() {
+    return browserify('./src/app.js')
         .bundle()        // bundles it and creates a file called main.js
         .pipe(source('main.js'))
-        // .pipe(buffer())  // Convert from streaming to buffered vinyl file object
-        // .pipe(uglify())  // Uglify bundle
+        .pipe(buffer())  // Convert from streaming to buffered vinyl file object
+        .pipe(uglify())  // Uglify bundle
+        .pipe(gulp.dest('./public/js/')); // saves it the public/js/ directory
+});
+
+gulp.task('build', function() {
+    return browserify('./src/app.js')
+        .bundle()        // bundles it and creates a file called main.js
+        .pipe(source('main.js'))
         .pipe(gulp.dest('./public/js/')); // saves it the public/js/ directory
 });
 
@@ -35,8 +43,29 @@ gulp.task('less', function() {
         .pipe(gulp.dest('./public/css'));
 });
 
+gulp.task('test', function() {
+    gulp.src('src/**/*.spec.js')
+        .pipe(mocha({
+            reporter: 'nyan',
+            clearRequireCache: true,
+            ignoreLeaks: true
+        }));
+});
+
+gulp.task('jshint', function() {
+    return gulp.src('src/**/*.*')
+        .pipe(cache('linting'))
+        .pipe(jshint())
+        .pipe(jshint.reporter('jshint-stylish'));
+});
+
+gulp.task('mocha', shell.task([
+    'mocha spec'
+]));
+
 gulp.task('watch', function() {
-    gulp.watch('app/**/*.*', ['build']);
+    gulp.watch('src/**/*.*', ['build']);
+    gulp.watch('less/**/*.less', ['less']);
 });
 
 gulp.task('db-create', shell.task([
@@ -54,5 +83,9 @@ gulp.task('db-down', shell.task([
 gulp.task('db-delete', shell.task([
     'docker rm dynamo-gui'
 ]));
+
+gulp.task('hi', function() {
+    gutil.log('Watching...');
+});
 
 gulp.task('default', ['connect', 'watch']);

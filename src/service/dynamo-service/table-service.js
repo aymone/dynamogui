@@ -34,13 +34,14 @@ function TableService(DynamoDB, $q) {
      */
     function describe(tableName) {
         var deferred = $q.defer();
-        var params = {
-            TableName: tableName
-        };
 
         if (!tableName) {
             deferred.reject('Table name to be described is required');
         }
+
+        var params = {
+            TableName: tableName
+        };
 
         DynamoDB.describeTable(params, function(err, data) {
             if (err) {
