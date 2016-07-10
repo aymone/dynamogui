@@ -9,6 +9,7 @@
   "author": "Marcelo Aymone",
   "license": "MIT",
   "devDependencies": {
+    "bluebird": "^3.4.1",
     "browserify": "^13.0.1",
     "chai": "^3.5.0",
     "gulp": "^3.9.1",
@@ -25,6 +26,7 @@
     "jshint-stylish": "^2.2.0",
     "less": "^2.7.1",
     "mocha": "^2.5.3",
+    "sinon": "^1.17.4",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
