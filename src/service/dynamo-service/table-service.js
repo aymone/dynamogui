@@ -5,7 +5,7 @@
  * @param {any} DynamoDB
  * @param {any} $q
  */
-function TableService(DynamoDB, $q) {
+function TableService(DynamoDB) {
     return {
         describe: describe,
         list: list
@@ -16,16 +16,15 @@ function TableService(DynamoDB, $q) {
      * @returns {Array} Table list
      */
     function list() {
-        var deferred = $q.defer();
-
-        DynamoDB.listTables(function(err, data) {
-            if (err) {
-                deferred.reject(err);
-            }
-            deferred.resolve(data.TableNames);
-        });
-
-        return deferred.promise;
+        return DynamoDB
+            .listTablesAsync()
+            .then(function(data) {
+                return data.TableNames;
+            })
+            .catch(function(err) {
+                console.log(err);
+                return err;
+            });
     }
 
     /**
@@ -33,24 +32,22 @@ function TableService(DynamoDB, $q) {
      * @param {String} table - Table name to describe
      */
     function describe(tableName) {
-        var deferred = $q.defer();
-
         if (!tableName) {
-            deferred.reject('Table name to be described is required');
+            return new Error('Invalid tableName');
         }
 
         var params = {
             TableName: tableName
         };
 
-        DynamoDB.describeTable(params, function(err, data) {
-            if (err) {
-                deferred.reject(err);
-            }
-            deferred.resolve(data);
-        });
-
-        return deferred.promise;
+        return DynamoDB
+            .describeTableAsync(params)
+            .then(function(data) {
+                return data;
+            })
+            .catch(function(err) {
+                return err;
+            });
     }
 }
 

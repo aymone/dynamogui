@@ -73,7 +73,7 @@ gulp.task('mocha', shell.task([
 ]));
 
 gulp.task('watch', function() {
-    gulp.watch('src/**/*.*', ['build']);
+    gulp.watch('src/**/*.js', ['test', 'build']);
     gulp.watch('less/**/*.less', ['less']);
 });
 
