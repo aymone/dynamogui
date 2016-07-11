@@ -54,7 +54,7 @@ gulp.task('test', function() {
     return gulp
         .src('src/**/*.spec.js')
         .pipe(mocha({
-            reporter: 'nyan',
+            reporter: 'spec',
             clearRequireCache: true,
             ignoreLeaks: true
         }));
