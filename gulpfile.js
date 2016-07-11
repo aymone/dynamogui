@@ -98,3 +98,5 @@ gulp.task('hi', function() {
 });
 
 gulp.task('default', ['connect', 'watch']);
+
+gulp.task('ci', ['jshint', 'test']);
