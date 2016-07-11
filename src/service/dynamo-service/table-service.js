@@ -20,10 +20,6 @@ function TableService(DynamoDB) {
             .listTablesAsync()
             .then(function(data) {
                 return data.TableNames;
-            })
-            .catch(function(err) {
-                console.log(err);
-                return err;
             });
     }
 
@@ -32,25 +28,13 @@ function TableService(DynamoDB) {
      * @param {String} table - Table name to describe
      */
     function describe(tableName) {
-        if (!tableName) {
-            return new Error('Invalid tableName');
-        }
-
-        var params = {
-            TableName: tableName
-        };
-
         return DynamoDB
-            .describeTableAsync(params)
-            .then(function(data) {
-                return data;
-            })
-            .catch(function(err) {
-                return err;
+            .describeTableAsync({
+                TableName: tableName
             });
     }
 }
 
-TableService.$inject = ['DynamoDB', '$q'];
+TableService.$inject = ['DynamoDB'];
 
 module.exports = TableService;
