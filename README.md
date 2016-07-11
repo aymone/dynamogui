@@ -1,5 +1,5 @@
 # Dynamo GUI
-[![Build Status](https://travis-ci.org/aymone/dynamogui.svg?branch=master)(https://travis-ci.org/aymone/dynamogui)
+[![Build Status](https://travis-ci.org/aymone/dynamogui.svg?branch=master)](https://travis-ci.org/aymone/dynamogui)
 
 *Under construction :D*
 
