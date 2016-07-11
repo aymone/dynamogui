@@ -54,7 +54,7 @@ gulp.task('test', function() {
     return gulp
         .src('src/**/*.spec.js')
         .pipe(mocha({
-            reporter: 'nyan',
+            reporter: 'spec',
             clearRequireCache: true,
             ignoreLeaks: true
         }));
@@ -98,3 +98,5 @@ gulp.task('hi', function() {
 });
 
 gulp.task('default', ['connect', 'watch']);
+
+gulp.task('ci', ['jshint', 'test']);
