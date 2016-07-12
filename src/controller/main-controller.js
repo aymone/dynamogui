@@ -17,23 +17,10 @@ function MainController($scope, TableService, $mdDialog) {
             clickOutsideToClose: true,
             bindToController: true,
             controller: function($mdDialog) {
-                this.click = function click() {
-                    $mdDialog.show({
-                        controllerAs: 'dialogCtrl',
-                        controller: function($mdDialog) {
-                            this.click = function() {
-                                $mdDialog.hide();
-                            };
-                        },
-                        preserveScope: true,
-                        autoWrap: true,
-                        skipHide: true,
-                        template: '<md-dialog class="confirm"><md-conent><md-button ng-click="dialogCtrl.click()">I am in a 2nd dialog!</md-button></md-conent></md-dialog>'
-                    });
-                };
+
             },
             autoWrap: false,
-            template: '<md-dialog class="stickyDialog" data-type="{{::dialogCtrl.thing.title}}"><md-conent><md-button ng-click="dialogCtrl.click()">I am in a dialog!</md-button></md-conent></md-dialog>',
+            templateUrl: 'templates/add-connection-dialog-directive.html',
             locals: {
                 thing: thing
             }
