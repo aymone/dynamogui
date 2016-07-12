@@ -3,10 +3,18 @@
         <form name="userForm">
             <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
                 <div flex-gt-sm="80">
-                    <h2>
+                    <h3>
                         Add connection
-                    </h2>
+                    </h3>
                 </div>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>State</label>
+                    <md-select ng-model="user.state">
+                        <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                            {{state.abbrev}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
             </div>
             <div layout-gt-sm="row">
                 <md-input-container class="md-block" flex-gt-sm>
@@ -34,6 +42,12 @@
                     <input name="phone" ng-model="user.phone" ng-pattern="/^[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}$/" required/>
                 </md-input-container>
             </div>
+            <md-button class="md-primary md-raised" ng-click="main.moreInfo(1)">
+                Save
+            </md-button>
+            <md-button class="md-warn md-raised" ng-click="main.moreInfo(1)">
+                Delete
+            </md-button>
         </form>
     </md-content>
 </md-dialog>
